@@ -55,6 +55,23 @@ namespace SistemadeVotaciones.Data
             }
         }
 
+        public List<Candidato> ObtenerCandidatosPorPlancha(int planchaId)
+        {
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                string sql = @"
+        SELECT *
+        FROM Candidatos
+        WHERE PlanchaId = @PlanchaId
+        ORDER BY Id ASC";
+
+                return connection.Query<Candidato>(
+                    sql,
+                    new { PlanchaId = planchaId }
+                ).ToList();
+            }
+        }
+
         public void EliminarCandidato(int id)
         {
             using (var connection = _connectionFactory.CreateConnection())

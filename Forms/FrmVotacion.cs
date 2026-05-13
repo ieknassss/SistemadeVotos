@@ -12,6 +12,7 @@ namespace SistemadeVotaciones.Forms
     {
         private readonly PlanchaRepository _planchaRepository;
         private readonly VotoRepository _votoRepository;
+        private readonly CandidatoRepository _candidatoRepository;
 
         public FrmVotacion()
         {
@@ -19,6 +20,7 @@ namespace SistemadeVotaciones.Forms
 
             _planchaRepository = new PlanchaRepository();
             _votoRepository = new VotoRepository();
+            _candidatoRepository = new CandidatoRepository();
         }
 
         private void FrmVotacion_Load(object sender, EventArgs e)
@@ -51,39 +53,51 @@ namespace SistemadeVotaciones.Forms
         private Panel CrearTarjetaPlancha(Plancha plancha)
         {
             Panel card = new Panel();
-            card.Width = 230;
-            card.Height = 300;
+            card.Width = 300;
+            card.Height = 430;
             card.BackColor = Color.White;
             card.Margin = new Padding(15);
             card.BorderStyle = BorderStyle.FixedSingle;
 
             PictureBox logo = new PictureBox();
-            logo.Width = 160;
-            logo.Height = 120;
-            logo.Location = new Point(35, 20);
+            logo.Width = 120;
+            logo.Height = 90;
+            logo.Location = new Point(90, 15);
             logo.SizeMode = PictureBoxSizeMode.Zoom;
             logo.BackColor = Color.FromArgb(236, 240, 241);
 
             if (!string.IsNullOrEmpty(plancha.Logo))
-            {
                 logo.ImageLocation = plancha.Logo;
-            }
 
             Label lblNombre = new Label();
             lblNombre.Text = plancha.Nombre;
             lblNombre.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblNombre.ForeColor = Color.FromArgb(44, 62, 80);
             lblNombre.TextAlign = ContentAlignment.MiddleCenter;
-            lblNombre.Location = new Point(10, 155);
-            lblNombre.Size = new Size(210, 35);
+            lblNombre.Location = new Point(10, 115);
+            lblNombre.Size = new Size(280, 30);
 
             Label lblSiglas = new Label();
             lblSiglas.Text = plancha.Siglas;
             lblSiglas.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblSiglas.ForeColor = Color.DimGray;
             lblSiglas.TextAlign = ContentAlignment.MiddleCenter;
-            lblSiglas.Location = new Point(10, 190);
-            lblSiglas.Size = new Size(210, 25);
+            lblSiglas.Location = new Point(10, 145);
+            lblSiglas.Size = new Size(280, 25);
+
+            FlowLayoutPanel panelCandidatos = new FlowLayoutPanel();
+            panelCandidatos.Location = new Point(15, 180);
+            panelCandidatos.Size = new Size(270, 170);
+            panelCandidatos.AutoScroll = true;
+            panelCandidatos.BackColor = Color.FromArgb(245, 245, 245);
+
+            List<Candidato> candidatos = _candidatoRepository.ObtenerCandidatosPorPlancha(plancha.Id);
+
+            foreach (Candidato candidato in candidatos)
+            {
+                Panel candidatoCard = CrearMiniCardCandidato(candidato);
+                panelCandidatos.Controls.Add(candidatoCard);
+            }
 
             Button btnVotar = new Button();
             btnVotar.Text = "VOTAR";
@@ -92,8 +106,8 @@ namespace SistemadeVotaciones.Forms
             btnVotar.FlatStyle = FlatStyle.Flat;
             btnVotar.FlatAppearance.BorderSize = 0;
             btnVotar.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnVotar.Location = new Point(30, 235);
-            btnVotar.Size = new Size(170, 40);
+            btnVotar.Location = new Point(45, 365);
+            btnVotar.Size = new Size(210, 45);
 
             btnVotar.Click += (s, e) =>
             {
@@ -103,9 +117,49 @@ namespace SistemadeVotaciones.Forms
             card.Controls.Add(logo);
             card.Controls.Add(lblNombre);
             card.Controls.Add(lblSiglas);
+            card.Controls.Add(panelCandidatos);
             card.Controls.Add(btnVotar);
 
             return card;
+        }
+
+        private Panel CrearMiniCardCandidato(Candidato candidato)
+        {
+            Panel panel = new Panel();
+            panel.Width = 250;
+            panel.Height = 70;
+            panel.BackColor = Color.White;
+            panel.Margin = new Padding(8);
+
+            PictureBox foto = new PictureBox();
+            foto.Width = 55;
+            foto.Height = 55;
+            foto.Location = new Point(8, 8);
+            foto.SizeMode = PictureBoxSizeMode.Zoom;
+            foto.BackColor = Color.FromArgb(236, 240, 241);
+
+            if (!string.IsNullOrEmpty(candidato.Foto))
+                foto.ImageLocation = candidato.Foto;
+
+            Label lblNombre = new Label();
+            lblNombre.Text = candidato.Nombre;
+            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblNombre.ForeColor = Color.FromArgb(44, 62, 80);
+            lblNombre.Location = new Point(70, 8);
+            lblNombre.Size = new Size(170, 25);
+
+            Label lblPuesto = new Label();
+            lblPuesto.Text = candidato.Puesto + " - " + candidato.Curso;
+            lblPuesto.Font = new Font("Segoe UI", 8F);
+            lblPuesto.ForeColor = Color.DimGray;
+            lblPuesto.Location = new Point(70, 35);
+            lblPuesto.Size = new Size(170, 25);
+
+            panel.Controls.Add(foto);
+            panel.Controls.Add(lblNombre);
+            panel.Controls.Add(lblPuesto);
+
+            return panel;
         }
 
         private void RegistrarVoto(int? planchaId, bool esNulo)
@@ -131,23 +185,13 @@ namespace SistemadeVotaciones.Forms
 
                 SessionHelper.UsuarioActual.HaVotado = true;
 
-                MessageBox.Show(
-                    "Voto registrado correctamente.",
-                    "Sistema de Votaciones",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                MessageBox.Show("Voto registrado correctamente.");
 
                 CargarPlanchas();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "No se pudo registrar el voto: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("No se pudo registrar el voto: " + ex.Message);
             }
         }
 
