@@ -168,6 +168,7 @@
             this.btnResultados.Height = 45;
             this.btnResultados.Text = "Resultados";
             this.btnResultados.UseVisualStyleBackColor = false;
+            this.btnResultados.Click += new System.EventHandler(this.btnResultados_Click);
 
             // btnCerrarSesion
             this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(192, 57, 43);
