@@ -34,6 +34,7 @@ namespace SistemadeVotaciones.Forms
 
             btnUsuarios.Visible = false;
             btnPlanchas.Visible = false;
+            btnCandidatos.Visible = false;
             btnVotar.Visible = false;
             btnDatos.Visible = false;
             btnPanel.Visible = false;
@@ -44,6 +45,7 @@ namespace SistemadeVotaciones.Forms
             {
                 btnUsuarios.Visible = true;
                 btnPlanchas.Visible = true;
+                btnCandidatos.Visible = true;
                 btnVotar.Visible = true;
                 btnDatos.Visible = true;
                 btnPanel.Visible = true;
@@ -53,6 +55,7 @@ namespace SistemadeVotaciones.Forms
             else if (rol == "AdminPlancha")
             {
                 btnPlanchas.Visible = true;
+                btnCandidatos.Visible = true;
                 btnDatos.Visible = true;
                 btnPanel.Visible = true;
                 btnResultados.Visible = true;
@@ -90,6 +93,11 @@ namespace SistemadeVotaciones.Forms
         private void btnPlanchas_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new FrmPlanchas());
+        }
+
+        private void btnCandidatos_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmCandidatos());
         }
 
         private void btnVotar_Click(object sender, EventArgs e)

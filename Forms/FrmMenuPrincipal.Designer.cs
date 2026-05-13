@@ -15,6 +15,7 @@
         private System.Windows.Forms.Button btnInicio;
         private System.Windows.Forms.Button btnUsuarios;
         private System.Windows.Forms.Button btnPlanchas;
+        private System.Windows.Forms.Button btnCandidatos;
         private System.Windows.Forms.Button btnVotar;
         private System.Windows.Forms.Button btnDatos;
         private System.Windows.Forms.Button btnPanel;
@@ -42,6 +43,7 @@
             this.btnPanel = new System.Windows.Forms.Button();
             this.btnDatos = new System.Windows.Forms.Button();
             this.btnVotar = new System.Windows.Forms.Button();
+            this.btnCandidatos = new System.Windows.Forms.Button();
             this.btnPlanchas = new System.Windows.Forms.Button();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
@@ -68,6 +70,7 @@
             this.panelMenu.Controls.Add(this.btnPanel);
             this.panelMenu.Controls.Add(this.btnDatos);
             this.panelMenu.Controls.Add(this.btnVotar);
+            this.panelMenu.Controls.Add(this.btnCandidatos);
             this.panelMenu.Controls.Add(this.btnPlanchas);
             this.panelMenu.Controls.Add(this.btnUsuarios);
             this.panelMenu.Controls.Add(this.btnInicio);
@@ -112,6 +115,18 @@
             this.btnPlanchas.Text = "Planchas";
             this.btnPlanchas.UseVisualStyleBackColor = false;
             this.btnPlanchas.Click += new System.EventHandler(this.btnPlanchas_Click);
+
+            // btnCandidatos
+            this.btnCandidatos.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);
+            this.btnCandidatos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCandidatos.FlatAppearance.BorderSize = 0;
+            this.btnCandidatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCandidatos.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnCandidatos.ForeColor = System.Drawing.Color.White;
+            this.btnCandidatos.Height = 45;
+            this.btnCandidatos.Text = "Candidatos";
+            this.btnCandidatos.UseVisualStyleBackColor = false;
+            this.btnCandidatos.Click += new System.EventHandler(this.btnCandidatos_Click);
 
             // btnVotar
             this.btnVotar.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);
@@ -192,7 +207,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(220, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(880, 70);
+            this.panelTop.Size = new System.Drawing.Size(980, 70);
 
             // lblTitulo
             this.lblTitulo.AutoSize = true;
@@ -205,14 +220,14 @@
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblUsuario.Location = new System.Drawing.Point(600, 15);
+            this.lblUsuario.Location = new System.Drawing.Point(720, 15);
             this.lblUsuario.Text = "Usuario:";
 
             // lblRol
             this.lblRol.AutoSize = true;
             this.lblRol.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.lblRol.ForeColor = System.Drawing.Color.White;
-            this.lblRol.Location = new System.Drawing.Point(600, 40);
+            this.lblRol.Location = new System.Drawing.Point(720, 40);
             this.lblRol.Text = "Rol:";
 
             // panelContenedor
@@ -220,12 +235,12 @@
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(220, 70);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(880, 580);
+            this.panelContenedor.Size = new System.Drawing.Size(980, 580);
 
             // FrmMenuPrincipal
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1100, 650);
+            this.ClientSize = new System.Drawing.Size(1200, 650);
 
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelTop);
