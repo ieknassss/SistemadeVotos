@@ -78,7 +78,7 @@ namespace SistemadeVotaciones.Forms
         {
             if (candidatoIdSeleccionado == 0)
             {
-                MessageBox.Show("Selecciona un candidato.");
+                MessageBox.Show("Selecciona un candidato de la tabla.");
                 return;
             }
 
@@ -95,7 +95,6 @@ namespace SistemadeVotaciones.Forms
             _candidatoRepository.ActualizarCandidato(candidato);
 
             MessageBox.Show("Candidato actualizado correctamente.");
-
             LimpiarCampos();
             CargarCandidatos();
         }

@@ -25,6 +25,7 @@
 
         private System.Windows.Forms.Button btnSeleccionarFoto;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnEliminar;
 
         private System.Windows.Forms.DataGridView dgvCandidatos;
@@ -62,12 +63,14 @@
 
             this.btnSeleccionarFoto = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnActualizar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
 
             this.dgvCandidatos = new System.Windows.Forms.DataGridView();
 
             this.panelFormulario.SuspendLayout();
             this.panelListado.SuspendLayout();
+
             ((System.ComponentModel.ISupportInitialize)(this.picFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCandidatos)).BeginInit();
 
@@ -192,10 +195,22 @@
             this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnGuardar.Location = new System.Drawing.Point(35, 430);
-            this.btnGuardar.Size = new System.Drawing.Size(200, 40);
+            this.btnGuardar.Size = new System.Drawing.Size(130, 40);
             this.btnGuardar.Text = "GUARDAR";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+
+            // btnActualizar
+            this.btnActualizar.BackColor = System.Drawing.Color.FromArgb(39, 174, 96);
+            this.btnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizar.FlatAppearance.BorderSize = 0;
+            this.btnActualizar.ForeColor = System.Drawing.Color.White;
+            this.btnActualizar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnActualizar.Location = new System.Drawing.Point(180, 430);
+            this.btnActualizar.Size = new System.Drawing.Size(140, 40);
+            this.btnActualizar.Text = "ACTUALIZAR";
+            this.btnActualizar.UseVisualStyleBackColor = false;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
 
             // btnEliminar
             this.btnEliminar.BackColor = System.Drawing.Color.FromArgb(192, 57, 43);
@@ -203,8 +218,8 @@
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnEliminar.Location = new System.Drawing.Point(255, 430);
-            this.btnEliminar.Size = new System.Drawing.Size(200, 40);
+            this.btnEliminar.Location = new System.Drawing.Point(335, 430);
+            this.btnEliminar.Size = new System.Drawing.Size(120, 40);
             this.btnEliminar.Text = "ELIMINAR";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -238,6 +253,7 @@
             this.panelFormulario.Controls.Add(this.btnSeleccionarFoto);
 
             this.panelFormulario.Controls.Add(this.btnGuardar);
+            this.panelFormulario.Controls.Add(this.btnActualizar);
             this.panelFormulario.Controls.Add(this.btnEliminar);
 
             // panelListado controls
