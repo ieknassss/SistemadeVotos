@@ -41,6 +41,7 @@
             this.btnDatos = new System.Windows.Forms.Button();
             this.btnVotar = new System.Windows.Forms.Button();
             this.btnPlanchas = new System.Windows.Forms.Button();
+
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelTop = new System.Windows.Forms.Panel();
             this.lblRol = new System.Windows.Forms.Label();
@@ -226,15 +227,20 @@
             // 
             // lblUsuario
             // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.lblUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblUsuario.Location = new System.Drawing.Point(975, 23);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(89, 28);
-            this.lblUsuario.TabIndex = 1;
-            this.lblUsuario.Text = "Usuario:";
+            // btnUsuarios
+            this.btnUsuarios.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);
+            this.btnUsuarios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUsuarios.FlatAppearance.BorderSize = 0;
+            this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUsuarios.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnUsuarios.ForeColor = System.Drawing.Color.White;
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 0);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(220, 45);
+            this.btnUsuarios.TabIndex = 0;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = false;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // lblTitulo
             // 

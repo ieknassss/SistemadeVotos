@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using SistemadeVotaciones.Helpers;
 
@@ -13,8 +14,13 @@ namespace SistemadeVotaciones.Forms
 
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = "Usuario: " + SessionHelper.UsuarioActual.Nombre;
+            lblUsuario.Text = "Usuario: " + SessionHelper.UsuarioActual.Nombre + " " + SessionHelper.UsuarioActual.Apellido;
+            lblUsuario.ForeColor = Color.White;
+            lblUsuario.BringToFront();
+
             lblRol.Text = "Rol: " + SessionHelper.UsuarioActual.Rol;
+            lblRol.ForeColor = Color.White;
+            lblRol.BringToFront();
 
             ConfigurarPermisos();
         }
@@ -55,6 +61,23 @@ namespace SistemadeVotaciones.Forms
             }
         }
 
+        private void AbrirFormulario(Form formulario)
+        {
+            panelContenedor.Controls.Clear();
+
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+
+            panelContenedor.Controls.Add(formulario);
+            formulario.Show();
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmUsuarios());
+        }
+
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             SessionHelper.UsuarioActual = null;
@@ -63,11 +86,6 @@ namespace SistemadeVotaciones.Forms
             login.Show();
 
             this.Close();
-        }
-
-        private void panelMenu_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
