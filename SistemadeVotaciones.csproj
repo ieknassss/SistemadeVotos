@@ -157,6 +157,7 @@
   <ItemGroup>
     <Compile Include="Data\DbConnectionFactory.cs" />
     <Compile Include="Data\UsuarioRepository.cs" />
+    <Compile Include="Entities\Plancha.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Form\FrmLogin.cs">
       <SubType>Form</SubType>
