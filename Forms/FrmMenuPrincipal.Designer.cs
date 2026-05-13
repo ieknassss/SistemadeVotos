@@ -150,6 +150,7 @@
             this.btnDatos.Height = 45;
             this.btnDatos.Text = "Datos Generales";
             this.btnDatos.UseVisualStyleBackColor = false;
+            this.btnDatos.Click += new System.EventHandler(this.btnDatos_Click);
 
             // btnPanel
             this.btnPanel.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);

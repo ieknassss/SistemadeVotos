@@ -13,6 +13,7 @@ namespace SistemadeVotaciones.Forms
         private readonly PlanchaRepository _planchaRepository;
         private readonly VotoRepository _votoRepository;
         private readonly CandidatoRepository _candidatoRepository;
+        private readonly ConfiguracionVotacionRepository _configRepository;
 
         public FrmVotacion()
         {
@@ -21,16 +22,28 @@ namespace SistemadeVotaciones.Forms
             _planchaRepository = new PlanchaRepository();
             _votoRepository = new VotoRepository();
             _candidatoRepository = new CandidatoRepository();
+            _configRepository = new ConfiguracionVotacionRepository();
         }
 
         private void FrmVotacion_Load(object sender, EventArgs e)
         {
             CargarPlanchas();
+            timerVotacion.Start();
+            ActualizarTiempo();
         }
 
         private void CargarPlanchas()
         {
             flowPlanchas.Controls.Clear();
+
+            btnVotoNulo.Enabled = true;
+
+            if (!_configRepository.VotacionEstaActiva())
+            {
+                lblEstado.Text = "La votación está cerrada. Ya no puedes votar.";
+                btnVotoNulo.Enabled = false;
+                return;
+            }
 
             bool yaVoto = _votoRepository.UsuarioYaVoto(SessionHelper.UsuarioActual.Id);
 
@@ -40,6 +53,8 @@ namespace SistemadeVotaciones.Forms
                 btnVotoNulo.Enabled = false;
                 return;
             }
+
+            lblEstado.Text = "Selecciona una plancha o realiza voto nulo.";
 
             List<Plancha> planchas = _planchaRepository.ObtenerPlanchas();
 
@@ -67,7 +82,9 @@ namespace SistemadeVotaciones.Forms
             logo.BackColor = Color.FromArgb(236, 240, 241);
 
             if (!string.IsNullOrEmpty(plancha.Logo))
+            {
                 logo.ImageLocation = plancha.Logo;
+            }
 
             Label lblNombre = new Label();
             lblNombre.Text = plancha.Nombre;
@@ -139,7 +156,9 @@ namespace SistemadeVotaciones.Forms
             foto.BackColor = Color.FromArgb(236, 240, 241);
 
             if (!string.IsNullOrEmpty(candidato.Foto))
+            {
                 foto.ImageLocation = candidato.Foto;
+            }
 
             Label lblNombre = new Label();
             lblNombre.Text = candidato.Nombre;
@@ -164,6 +183,13 @@ namespace SistemadeVotaciones.Forms
 
         private void RegistrarVoto(int? planchaId, bool esNulo)
         {
+            if (!_configRepository.VotacionEstaActiva())
+            {
+                MessageBox.Show("La votación ya fue cerrada.");
+                CargarPlanchas();
+                return;
+            }
+
             DialogResult respuesta = MessageBox.Show(
                 "¿Estás segura/o de realizar este voto? Luego no podrás cambiarlo.",
                 "Confirmar voto",
@@ -198,6 +224,35 @@ namespace SistemadeVotaciones.Forms
         private void btnVotoNulo_Click(object sender, EventArgs e)
         {
             RegistrarVoto(null, true);
+        }
+
+        private void timerVotacion_Tick(object sender, EventArgs e)
+        {
+            ActualizarTiempo();
+        }
+
+        private void ActualizarTiempo()
+        {
+            int segundosRestantes = _configRepository.ObtenerSegundosRestantes();
+
+            if (segundosRestantes <= 0)
+            {
+                lblTiempo.Text = "Tiempo agotado";
+                timerVotacion.Stop();
+
+                flowPlanchas.Controls.Clear();
+                lblEstado.Text = "La votación está cerrada.";
+                btnVotoNulo.Enabled = false;
+
+                return;
+            }
+
+            TimeSpan tiempo = TimeSpan.FromSeconds(segundosRestantes);
+
+            lblTiempo.Text = "Tiempo: " +
+                             tiempo.Minutes.ToString("00") +
+                             ":" +
+                             tiempo.Seconds.ToString("00");
         }
     }
 }

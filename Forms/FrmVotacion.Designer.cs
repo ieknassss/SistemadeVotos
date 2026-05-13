@@ -7,8 +7,11 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblSubtitulo;
         private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label lblTiempo;
+
         private System.Windows.Forms.FlowLayoutPanel flowPlanchas;
         private System.Windows.Forms.Button btnVotoNulo;
+        private System.Windows.Forms.Timer timerVotacion;
 
         protected override void Dispose(bool disposing)
         {
@@ -22,11 +25,16 @@
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblSubtitulo = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
+            this.lblTiempo = new System.Windows.Forms.Label();
+
             this.flowPlanchas = new System.Windows.Forms.FlowLayoutPanel();
             this.btnVotoNulo = new System.Windows.Forms.Button();
+            this.timerVotacion = new System.Windows.Forms.Timer(this.components);
 
             this.SuspendLayout();
 
@@ -60,6 +68,15 @@
             this.lblEstado.Location = new System.Drawing.Point(40, 110);
             this.lblEstado.Text = "";
 
+            // lblTiempo
+            this.lblTiempo.AutoSize = true;
+            this.lblTiempo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.lblTiempo.ForeColor = System.Drawing.Color.FromArgb(192, 57, 43);
+            this.lblTiempo.Location = new System.Drawing.Point(850, 20);
+            this.lblTiempo.Name = "lblTiempo";
+            this.lblTiempo.Size = new System.Drawing.Size(180, 25);
+            this.lblTiempo.Text = "Tiempo: 00:00";
+
             // btnVotoNulo
             this.btnVotoNulo.BackColor = System.Drawing.Color.FromArgb(192, 57, 43);
             this.btnVotoNulo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -79,10 +96,15 @@
             this.flowPlanchas.Size = new System.Drawing.Size(1060, 460);
             this.flowPlanchas.AutoScroll = true;
 
+            // timerVotacion
+            this.timerVotacion.Interval = 1000;
+            this.timerVotacion.Tick += new System.EventHandler(this.timerVotacion_Tick);
+
             // Controles
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.lblSubtitulo);
             this.Controls.Add(this.lblEstado);
+            this.Controls.Add(this.lblTiempo);
             this.Controls.Add(this.btnVotoNulo);
             this.Controls.Add(this.flowPlanchas);
 

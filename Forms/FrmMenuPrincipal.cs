@@ -14,15 +14,10 @@ namespace SistemadeVotaciones.Forms
 
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = "Usuario: " +
-                SessionHelper.UsuarioActual.Nombre + " " +
-                SessionHelper.UsuarioActual.Apellido;
-
+            lblUsuario.Text = "Usuario: " + SessionHelper.UsuarioActual.Nombre + " " + SessionHelper.UsuarioActual.Apellido;
             lblUsuario.ForeColor = Color.White;
 
-            lblRol.Text = "Rol: " +
-                SessionHelper.UsuarioActual.Rol;
-
+            lblRol.Text = "Rol: " + SessionHelper.UsuarioActual.Rol;
             lblRol.ForeColor = Color.White;
 
             ConfigurarPermisos();
@@ -76,7 +71,6 @@ namespace SistemadeVotaciones.Forms
             formulario.Dock = DockStyle.Fill;
 
             panelContenedor.Controls.Add(formulario);
-
             formulario.Show();
         }
 
@@ -103,6 +97,11 @@ namespace SistemadeVotaciones.Forms
         private void btnVotar_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new FrmVotacion());
+        }
+
+        private void btnDatos_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmDatosGenerales());
         }
 
         private void btnResultados_Click(object sender, EventArgs e)
