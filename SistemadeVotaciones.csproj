@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DbConnectionFactory.cs" />
+    <Compile Include="Data\UsuarioRepository.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Form\FrmLogin.cs">
       <SubType>Form</SubType>
@@ -169,6 +170,7 @@
     <Compile Include="Form\FrmMenuPrincipal.Designer.cs">
       <DependentUpon>FrmMenuPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\SessionHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form\FrmMenuPrincipal.resx">
@@ -198,7 +200,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Helpers\" />
     <Folder Include="Reportes\" />
     <Folder Include="Services\" />
   </ItemGroup>
