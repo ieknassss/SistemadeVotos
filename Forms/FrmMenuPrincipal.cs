@@ -1,4 +1,4 @@
-﻿using SistemadeVotaciones.Form;
+﻿using SistemadeVotaciones.Forms;
 using SistemadeVotaciones.Helpers;
 using System;
 using System.Drawing;
