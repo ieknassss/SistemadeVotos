@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SistemadeVotaciones.Form;
+using SistemadeVotaciones.Helpers;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using SistemadeVotaciones.Helpers;
 
 namespace SistemadeVotaciones.Forms
 {
@@ -16,11 +17,9 @@ namespace SistemadeVotaciones.Forms
         {
             lblUsuario.Text = "Usuario: " + SessionHelper.UsuarioActual.Nombre + " " + SessionHelper.UsuarioActual.Apellido;
             lblUsuario.ForeColor = Color.White;
-            lblUsuario.BringToFront();
 
             lblRol.Text = "Rol: " + SessionHelper.UsuarioActual.Rol;
             lblRol.ForeColor = Color.White;
-            lblRol.BringToFront();
 
             ConfigurarPermisos();
         }
@@ -73,10 +72,26 @@ namespace SistemadeVotaciones.Forms
             formulario.Show();
         }
 
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            panelContenedor.Controls.Clear();
+        }
+
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new FrmUsuarios());
         }
+
+        private void btnPlanchas_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmPlanchas());
+        }
+
+        private void btnVotar_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmVotacion());
+        }
+
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
