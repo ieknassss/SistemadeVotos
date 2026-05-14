@@ -145,7 +145,7 @@
             this.btnDatos.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnDatos.FlatAppearance.BorderSize = 0;
             this.btnDatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDatos.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnDatos.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnDatos.ForeColor = System.Drawing.Color.White;
             this.btnDatos.Height = 45;
             this.btnDatos.Text = "Datos Generales";
@@ -157,11 +157,12 @@
             this.btnPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.btnPanel.FlatAppearance.BorderSize = 0;
             this.btnPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPanel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.btnPanel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnPanel.ForeColor = System.Drawing.Color.White;
             this.btnPanel.Height = 45;
             this.btnPanel.Text = "Panel Electoral";
             this.btnPanel.UseVisualStyleBackColor = false;
+            this.btnPanel.Click += new System.EventHandler(this.btnPanel_Click);
 
             // btnReportes
             this.btnReportes.BackColor = System.Drawing.Color.FromArgb(44, 62, 80);

@@ -40,5 +40,20 @@ namespace SistemadeVotaciones.Data
                 return segundos < 0 ? 0 : segundos;
             }
         }
+
+        public void ReiniciarVotacion()
+        {
+            using (var connection = _connectionFactory.CreateConnection())
+            {
+                string sql = @"
+                UPDATE ConfiguracionVotacion
+                SET FechaInicio = GETDATE(),
+                    FechaCierre = DATEADD(MINUTE, 5, GETDATE()),
+                    Activa = 1
+                WHERE Id = 1";
+
+                connection.Execute(sql);
+            }
+        }
     }
 }

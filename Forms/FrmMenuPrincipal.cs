@@ -14,11 +14,12 @@ namespace SistemadeVotaciones.Forms
 
         private void FrmMenuPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = "Usuario: " + SessionHelper.UsuarioActual.Nombre + " " + SessionHelper.UsuarioActual.Apellido;
-            lblUsuario.ForeColor = Color.White;
+            lblUsuario.Text =
+                SessionHelper.UsuarioActual.Nombre + " " +
+                SessionHelper.UsuarioActual.Apellido;
 
-            lblRol.Text = "Rol: " + SessionHelper.UsuarioActual.Rol;
-            lblRol.ForeColor = Color.White;
+            lblRol.Text =
+                SessionHelper.UsuarioActual.Rol;
 
             ConfigurarPermisos();
         }
@@ -31,10 +32,10 @@ namespace SistemadeVotaciones.Forms
             btnPlanchas.Visible = false;
             btnCandidatos.Visible = false;
             btnVotar.Visible = false;
+            btnResultados.Visible = false;
             btnDatos.Visible = false;
             btnPanel.Visible = false;
             btnReportes.Visible = false;
-            btnResultados.Visible = false;
 
             if (rol == "SuperAdmin")
             {
@@ -42,10 +43,10 @@ namespace SistemadeVotaciones.Forms
                 btnPlanchas.Visible = true;
                 btnCandidatos.Visible = true;
                 btnVotar.Visible = true;
+                btnResultados.Visible = true;
                 btnDatos.Visible = true;
                 btnPanel.Visible = true;
                 btnReportes.Visible = true;
-                btnResultados.Visible = true;
             }
             else if (rol == "AdminPlancha")
             {
@@ -99,14 +100,19 @@ namespace SistemadeVotaciones.Forms
             AbrirFormulario(new FrmVotacion());
         }
 
+        private void btnResultados_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(new FrmResultados());
+        }
+
         private void btnDatos_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new FrmDatosGenerales());
         }
 
-        private void btnResultados_Click(object sender, EventArgs e)
+        private void btnPanel_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new FrmResultados());
+            AbrirFormulario(new FrmPanelElectoral());
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

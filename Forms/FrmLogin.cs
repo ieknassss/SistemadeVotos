@@ -14,6 +14,9 @@ namespace SistemadeVotaciones.Forms
             InitializeComponent();
 
             _usuarioRepository = new UsuarioRepository();
+
+            ConfiguracionVotacionRepository config = new ConfiguracionVotacionRepository();
+            config.ReiniciarVotacion();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -23,13 +26,7 @@ namespace SistemadeVotaciones.Forms
 
             if (usuario == "" || clave == "")
             {
-                MessageBox.Show(
-                    "Debes completar todos los campos.",
-                    "Sistema de Votaciones",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning
-                );
-
+                MessageBox.Show("Debes completar todos los campos.");
                 return;
             }
 
@@ -37,27 +34,13 @@ namespace SistemadeVotaciones.Forms
 
             if (usuarioEncontrado == null)
             {
-                MessageBox.Show(
-                    "Usuario o contraseña incorrectos.",
-                    "Acceso denegado",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-
+                MessageBox.Show("Usuario o contraseña incorrectos.");
                 return;
             }
 
             SessionHelper.UsuarioActual = usuarioEncontrado;
 
-            MessageBox.Show(
-                "Bienvenida/o " + usuarioEncontrado.Nombre,
-                "Inicio de sesión correcto",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
-
             FrmMenuPrincipal menu = new FrmMenuPrincipal();
-
             menu.Show();
 
             this.Hide();
